@@ -1,72 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-{# set= assigner les valeurs a la variable USER
+    <a class="navbar-brand" href="{{path('home_page')}}">YesCode</a>
 
-{% set user1 = {nom : "james", prenom : "bob", role : "admin", } %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-{% set user1 = {nom : "james", prenom : "bibi", role : "user", } %}
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="{{ path('home_page') }}">
+            <i class="fa fa-home"></i>
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="">
+            <i class="fas fa-newspaper"></i>
+            Articles
+          </a>
+        </li>
+      </ul>
+      
+{# Formulaire Authentification avec Option Connexion Admin si IF est True   #}
+      {% set user = {"firstname":"James", "lastname": "brown", "role": "admin" , 'isConnected': true} %}
 
-{# Rassembler les Users dans un Tableau  #}
-{# {% set user = [user1, user2,] %}
+      <ul class="navbar-nav ml-auto">
+        {% if user.isConnected %}
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user"></i>
+                  {# Le Pipe | permet d'apporter une mise en Forme du Titre Aaaa Bbbb #}
+                {{ user.firstname | title }} 
+                {{ user.lastname | title }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Mon Profil</a>
+                <a class="dropdown-item" href="#">Mes articles</a>
+
+                {% if user.role == "admin" %}
+                  <a class="dropdown-item" href="#">Espace Admin</a>
+                {% endif %}
 
 
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Déconnexion</a>
+              </div>
+            </li>
+            {% else %}
+            <li class="nav-item mx-3">
+              <a class="nav-link" href="">
+                <i class="fas fa-user-plus mx-2"></i>
+                inscription
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="">
+                <i class="fas fa-sign-in-alt mx-2"></i>
+                connexion
+              </a>
+            </li>
+        {% endif %}
+      </ul>
 
-        {% if true %}
-    {% if user.isConnected  %}
-    
-        <p>Vous etes déja connecté </p>
-       <button>Déconnexion</button>
-        {% else %}
-            <p>Veuillez vous Connecter</p>
-        <button>Connexion</button>
-    
-    {% endif %} #} #}
 
-
-
-<header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-		<a class="navbar-brand" href="{{path("home_page")}}">
-			YesCode
-		</a>
-
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarColor01">
-			<ul class="navbar-nav mr-auto">
-
-				<li class="nav-item">
-					<a class="nav-link" href="{{path("home_page")}}">
-						<i class="fa fa-home"></i>
-						Accueil
-					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="#">
-						<i class="fa fa-newspaper"></i>
-						Articles
-					</a>
-				</li>
-
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-						<i class="fa fa-user"></i>
-						HakCode
-					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="#">Mon Profil</a>
-						<a class="dropdown-item" href="#">Mes articles</a>
-						<a class="dropdown-item" href="#">Espace Admin</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Déconnexion</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
-</header>
+    </div>
+  </nav>
