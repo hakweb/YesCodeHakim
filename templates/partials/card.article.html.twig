@@ -1,0 +1,36 @@
+{# set= assigner les valeurs a la variable ARTICLE #}
+
+{% set article1 = {title : "Symfony", intro : "Symfony est un framework PHP complet", author : "Fabien Potencier", image : "https://neo7.fr/wp-content/uploads/2018/01/symfony-logo.png"} %}
+{% set article2 = {title : "Angular", intro : "Angular le framework de Google", author : "Angus Lard", image : "https://angular.io/assets/images/logos/angular/angular.svg"} %}
+{% set article3 = {title : "Laravel", intro : "Laravel est un framework PHP aussi", author : "Lara Velle", image : "https://jf-blog.fr/wp-content/uploads/2018/07/laravel-logo.png"} %}
+
+{# Rassembler les Articles dans un Tableau  #}
+{% set articles = [article1, article2, article3] %}
+
+<div
+	class="row">
+
+	{# Pour chacun des Elements du Tableau ARTICLES #}
+	{% for article in articles %}
+		<div class="col-4">
+			<div class="card bg-light my-5 shadow">
+				<h3 class="card-header">{{article.title}}</h3>
+				<img height="350px" src={{article.image}} alt="Card image">
+				<div class="card-body">
+					<p class="card-text">{{article.intro}}</p>
+					<a href="#" class="btn btn-primary rounded">Lire la suite</a>
+					<div class="my-3">
+						<a href="#" class="card-link">{{article.author}}</a>
+					</div>
+				</div>
+				<div class="card-footer text-muted">
+					Il y a 2 jours
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+
+
+
+</div>

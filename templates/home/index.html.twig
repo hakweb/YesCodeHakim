@@ -1,6 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block titre %}Accueil 
+{% endblock %}
 
-{% block body %}Ici d'est le bloc Truc {% endblock %}
+{% block body %}
+	<div class="container">
+
+		<div class="jumbotron text-center my-5 shadow">
+			<h1 class="display-4">Bienvenue sur YesCode !</h1>
+			<p class="lead">Ici ça parle de code, langages et technos de demain
+			</p>
+			<hr class="my-4">
+			<p>Retrouvez nos derniers articles sur les technos les plus hype du moment !</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg shadow" href="#" role="button">
+					&lt;/&gt; Actualités &lt;/&gt;
+				</a>
+			</p>
+		</div>
+
+		<h2 class="text-center h1">Les derniers articles</h2>
+
+        {% include "partials/card.article.html.twig" %}
+
+	</div>
+
+
+{% endblock %}
+
 
