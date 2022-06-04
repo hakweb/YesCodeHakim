@@ -2,25 +2,23 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Fruit;
+use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @Route("/", name="home_page")
+     */
+    public function index(ArticleRepository $repo): Response
+    {
+        $articles = $repo->findLastArticles(3);
 
-    #[Route('/', name: 'home_page')]
-    public function index(){
-
-        $banane = new Fruit();
-
-        $banane->setName("Jack");
-
-        dump( $banane);
-        return $this->render('home/index.html.twig', [ 'jack' => $banane]);
+        return $this->render('home/index.html.twig', [
+            "articles"  => $articles
+        ]);
     }
 
-
 }
-
